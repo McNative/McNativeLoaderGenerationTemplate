@@ -8,13 +8,14 @@ pipeline {
         buildDiscarder logRotator(numToKeepStr: '100')
     }
     stages {
-        stage('') {
+        stage('Generate') {
             steps {
-                sh 'mvn -Dresource.name=${name}
-                        -Dresource.author=${author}
-                        -Dresource.id=${resourceId}
-                        -Dresource.website=${website}
-                        -Dresource.description=${description}'
+                sh """
+                mvn -Dresource.name=${name}
+                -Dresource.author=${author}
+                -Dresource.id=${resourceId}
+                -Dresource.website=${website}
+                -Dresource.description=${description}"""
             }
         }
     }
