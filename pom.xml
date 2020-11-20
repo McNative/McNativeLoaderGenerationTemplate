@@ -14,7 +14,7 @@
 
         <!-- Dependency version -->
         <dependency.pretronic.libraries>1.2.24.162-SNAPSHOT</dependency.pretronic.libraries>
-        <dependency.mcnative.version>1.7.3.414-SNAPSHOT</dependency.mcnative.version>
+        <dependency.mcnative.version>1.7.9.420-SNAPSHOT</dependency.mcnative.version>
         <!-- Maven plugins -->
         <plugin.compiler>3.8.1</plugin.compiler>
         <plugin.source>3.2.1</plugin.source>
@@ -22,11 +22,11 @@
         <plugin.maven.shade>3.2.2</plugin.maven.shade>
         <plugin.maven.deploy>3.0.0-M1</plugin.maven.deploy>
 
-        <project.name>Unknown</project.name>
-        <project.author>Unknown</project.author>
-        <project.website>Unknown</project.website>
-        <project.description>Unknown</project.description>
-        <project.id>Unset</project.id>
+        <resource.name>Unknown</resource.name>
+        <resource.author>Unknown</resource.author>
+        <resource.website>Unknown</resource.website>
+        <resource.description> </resource.description>
+        <resource.id>Unset</resource.id>
     </properties>
 
     <repositories>
@@ -74,11 +74,11 @@
                     <resource-loader-version>${dependency.pretronic.libraries}</resource-loader-version>
 
                     <manifest>
-                        <name>${project.name}</name>
-                        <id>${project.id}</id>
-                        <website>${project.website}</website>
-                        <author>${project.author}</author>
-                        <description>${project.description}</description>
+                        <name>${resource.name}</name>
+                        <id>${resource.id}</id>
+                        <website>${resource.website}</website>
+                        <author>${resource.author}</author>
+                        <description>${resource.description}</description>
                         <main>Unused</main>
                     </manifest>
                 </configuration>
