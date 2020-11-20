@@ -10,13 +10,8 @@ pipeline {
     stages {
         stage('Generate') {
             steps {
-                sh """
-                mvn -Dresource.name=${name}
-                -Dresource.author=${author}
-                -Dresource.id=${resourceId}
-                -Dresource.website=${website}
-                -Dresource.description=${description}
-                clean package"""
+                sh "
+                mvn -Dresource.name=${name} -Dresource.author=${author} -Dresource.id=${resourceId} -Dresource.website=${website} -Dresource.description=${description} clean package"
             }
         }
     }
