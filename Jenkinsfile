@@ -15,7 +15,8 @@ pipeline {
                 -Dresource.author=${author}
                 -Dresource.id=${resourceId}
                 -Dresource.website=${website}
-                -Dresource.description=${description}"""
+                -Dresource.description=${description}
+                clean package"""
             }
         }
     }
