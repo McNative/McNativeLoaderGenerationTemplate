@@ -30,7 +30,7 @@ pipeline {
                              responseHandle: 'NONE',
                              uploadFile: "target/loader.jar",
                              customHeaders:[[name:'secret', value:"${SECRET}", maskValue:true]],
-                             url: "192.168.1.14/ResourceLoaderBuildCallback?resourceId=${resourceId}")
+                             url: "http://192.168.1.14/ResourceLoaderBuildCallback?resourceId=${resourceId}")
                     }
                 }
             }
