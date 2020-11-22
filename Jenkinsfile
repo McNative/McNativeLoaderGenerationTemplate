@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Generate') {
             steps {
-                sh "mvn -Dresource.name=${name} -Dresource.author=${author} -Dresource.id=${resourceId} -Dresource.website=${website} -Dresource.description=${description} clean package"
+                sh "mvn -Dresource.name=${name} -Dresource.author=${author} -Dresource.id=${resourceId} -Dresource.website=${website} -Dresource.description=\"${description}\" clean package"
             }
         }
         stage('Archive') {
@@ -19,20 +19,19 @@ pipeline {
             }
         }
         stage('Callback') {
-                    when { equals expected: false, actual: SKIP }
-                    steps {
-                        script {
-                            withCredentials([string(credentialsId: JAVADOCS_TOKEN_CREDENTIAL_ID, variable: 'SECRET')]) {
-                            httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_OCTETSTREAM',
+            steps {
+                script {
+                    withCredentials([string(credentialsId: JAVADOCS_TOKEN_CREDENTIAL_ID, variable: 'SECRET')]) {
+                        httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_OCTETSTREAM',
                              httpMode: 'POST', ignoreSslErrors: true, timeout: 3000,
                              multipartName: 'file',
                              responseHandle: 'NONE',
                              uploadFile: "target/loader.jar",
                              customHeaders:[[name:'secret', value:"${SECRET}", maskValue:true]],
                              url: "192.168.1.14/ResourceLoaderBuildCallback?resourceId=${resourceId}")
-                            }
-                        }
                     }
                 }
+            }
+        }
     }
 }
