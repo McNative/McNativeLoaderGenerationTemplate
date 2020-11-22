@@ -15,8 +15,24 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: '**/target/*.jar'
+                archiveArtifacts artifacts: '**/target/loader.jar'
             }
         }
+        stage('Callback') {
+                    when { equals expected: false, actual: SKIP }
+                    steps {
+                        script {
+                            withCredentials([string(credentialsId: JAVADOCS_TOKEN_CREDENTIAL_ID, variable: 'SECRET')]) {
+                            httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_OCTETSTREAM',
+                             httpMode: 'POST', ignoreSslErrors: true, timeout: 3000,
+                             multipartName: 'file',
+                             responseHandle: 'NONE',
+                             uploadFile: "target/loader.jar",
+                             customHeaders:[[name:'secret', value:"${SECRET}", maskValue:true]],
+                             url: "192.168.1.14/ResourceLoaderBuildCallback?resourceId=${resourceId}")
+                            }
+                        }
+                    }
+                }
     }
 }
