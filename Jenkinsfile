@@ -1,3 +1,5 @@
+String MIRROR_SERVER_TOKEN_CREDENTIAL_ID = "120a9a64-81a7-4557-80bf-161e3ab8b976"
+
 pipeline {
     agent any
     tools {
@@ -21,7 +23,7 @@ pipeline {
         stage('Callback') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: JAVADOCS_TOKEN_CREDENTIAL_ID, variable: 'SECRET')]) {
+                    withCredentials([string(credentialsId: MIRROR_SERVER_TOKEN_CREDENTIAL_ID, variable: 'SECRET')]) {
                         httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_OCTETSTREAM',
                              httpMode: 'POST', ignoreSslErrors: true, timeout: 3000,
                              multipartName: 'file',
