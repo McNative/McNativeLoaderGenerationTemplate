@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Generate') {
             steps {
-                sh "mvn -Dresource.name=\"${name}\" -Dresource.author=\"${author}\" -Dresource.id=${resourceId} -Dresource.website=\"${website}\" -Dresource.description=\"${description}\" clean package"
+                sh "mvn -Dresource.name=\"${name}\" -Dresource.author=\"${author}\" -Dresource.id=${resourceId} -Dresource.website=\"${website}\" -Dresource.description=\"${description}\" clean package -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true"
             }
         }
         stage('Archive') {
