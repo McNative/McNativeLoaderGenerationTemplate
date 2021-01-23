@@ -14,7 +14,7 @@
 
         <!-- Dependency version -->
         <dependency.pretronic.libraries>1.2.37.175-SNAPSHOT</dependency.pretronic.libraries>
-        <dependency.mcnative.buildtool>1.0.0.5</dependency.mcnative.buildtool>
+        <dependency.mcnative.buildtool>1.0.5.12-SNAPSHOT</dependency.mcnative.buildtool>
         <dependency.mcnative.loader>1.7.75.9</dependency.mcnative.loader>
         <dependency.mcnative.common>1.7.81.8-SNAPSHOT</dependency.mcnative.common>
         <!-- Maven plugins -->
@@ -24,6 +24,7 @@
         <plugin.maven.shade>3.2.2</plugin.maven.shade>
         <plugin.maven.deploy>3.0.0-M1</plugin.maven.deploy>
 
+        <resource.installMcNative>true</resource.installMcNative>
         <resource.name>Unknown</resource.name>
         <resource.author>Unknown</resource.author>
         <resource.website>Unknown</resource.website>
@@ -76,6 +77,7 @@
                     <resource-loader-version>${dependency.pretronic.libraries}</resource-loader-version>
 
                     <manifest>
+                        <installMcNative>${resource.installMcNative}</installMcNative>
                         <name>${resource.name}</name>
                         <id>${resource.id}</id>
                         <website>${resource.website}</website>
